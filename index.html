@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👑 让我们都变成幸福大王 👑</title>
+    <style>
+        /* ===== 全局酷炫男士风格 (保留可爱动物) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', 'Segoe UI', 'Poppins', 'Comic Neue', system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+            overflow-x: hidden;
+            background: #0f0e1a;
+            background-image: 
+                radial-gradient(ellipse at 10% 20%, rgba(100, 200, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 80%, rgba(255, 100, 200, 0.10) 0%, transparent 45%),
+                radial-gradient(ellipse at 30% 70%, rgba(0, 200, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 30%, rgba(255, 100, 150, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(100, 150, 255, 0.05) 0%, transparent 60%),
+                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255, 255, 255, 0.02) 30px, rgba(255, 255, 255, 0.02) 60px),
+                repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(255, 255, 255, 0.015) 30px, rgba(255, 255, 255, 0.015) 60px);
+        }
+
+        /* ===== 酷炫背景层 ===== */
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(145deg, #0f0e1a 0%, #1a1a2e 30%, #16213e 60%, #0f0e1a 100%);
+            background-image: 
+                radial-gradient(ellipse at 10% 20%, rgba(100, 200, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 80%, rgba(255, 100, 200, 0.10) 0%, transparent 45%),
+                radial-gradient(ellipse at 30% 70%, rgba(0, 200, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 30%, rgba(255, 100, 150, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(100, 150, 255, 0.05) 0%, transparent 60%);
+        }
+
+        /* ===== 星星闪烁 ===== */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.15; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* ===== 飘散小动物 (男士酷炫版) ===== */
+        .animal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .animal-float {
+            position: absolute;
+            font-size: 2.0rem;
+            opacity: 0.25;
+            animation: animalFloat 16s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 15px rgba(100, 200, 255, 0.15));
+        }
+        @keyframes animalFloat {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(40px, -50px) rotate(20deg) scale(1.1); }
+            50% { transform: translate(-30px, 40px) rotate(-15deg) scale(0.9); }
+            75% { transform: translate(50px, 30px) rotate(15deg) scale(1.05); }
+            100% { transform: translate(-25px, -40px) rotate(-8deg) scale(1); }
+        }
+
+        /* ===== 满屏动物背景 (酷炫色调) ===== */
+        .animal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            opacity: 0.15;
+        }
+        .animal-bg span {
+            position: absolute;
+            font-size: 3.2rem;
+            animation: animalBgFloat 22s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.08));
+        }
+        .animal-bg span:nth-child(1) { top: 3%; left: 2%; animation-duration: 18s; font-size: 3.8rem; }
+        .animal-bg span:nth-child(2) { top: 8%; right: 4%; animation-duration: 24s; animation-delay: 1s; font-size: 3.0rem; }
+        .animal-bg span:nth-child(3) { top: 20%; left: 12%; animation-duration: 20s; animation-delay: 2s; font-size: 4.2rem; }
+        .animal-bg span:nth-child(4) { top: 35%; right: 2%; animation-duration: 26s; animation-delay: 0.5s; font-size: 3.4rem; }
+        .animal-bg span:nth-child(5) { top: 50%; left: 4%; animation-duration: 19s; animation-delay: 3s; font-size: 3.6rem; }
+        .animal-bg span:nth-child(6) { top: 60%; right: 6%; animation-duration: 21s; animation-delay: 1.5s; font-size: 4.0rem; }
+        .animal-bg span:nth-child(7) { top: 75%; left: 8%; animation-duration: 23s; animation-delay: 2.5s; font-size: 3.2rem; }
+        .animal-bg span:nth-child(8) { top: 85%; right: 3%; animation-duration: 17s; animation-delay: 0.8s; font-size: 3.8rem; }
+        .animal-bg span:nth-child(9) { top: 15%; left: 45%; animation-duration: 25s; animation-delay: 1.2s; font-size: 3.0rem; }
+        .animal-bg span:nth-child(10) { top: 45%; left: 50%; animation-duration: 20s; animation-delay: 2.8s; font-size: 3.4rem; }
+        .animal-bg span:nth-child(11) { top: 70%; left: 55%; animation-duration: 22s; animation-delay: 0.3s; font-size: 3.6rem; }
+        .animal-bg span:nth-child(12) { top: 92%; left: 40%; animation-duration: 19s; animation-delay: 1.8s; font-size: 3.2rem; }
+        .animal-bg span:nth-child(13) { top: 5%; left: 70%; animation-duration: 21s; animation-delay: 2.2s; font-size: 3.8rem; }
+        .animal-bg span:nth-child(14) { top: 30%; left: 80%; animation-duration: 24s; animation-delay: 0.6s; font-size: 3.0rem; }
+        .animal-bg span:nth-child(15) { top: 55%; left: 85%; animation-duration: 18s; animation-delay: 3.2s; font-size: 4.2rem; }
+        .animal-bg span:nth-child(16) { top: 80%; left: 75%; animation-duration: 26s; animation-delay: 1.0s; font-size: 3.4rem; }
+        .animal-bg span:nth-child(17) { top: 10%; left: 30%; animation-duration: 20s; animation-delay: 2.0s; font-size: 2.8rem; }
+        .animal-bg span:nth-child(18) { top: 40%; left: 35%; animation-duration: 23s; animation-delay: 0.9s; font-size: 3.0rem; }
+        .animal-bg span:nth-child(19) { top: 65%; left: 20%; animation-duration: 19s; animation-delay: 2.6s; font-size: 3.6rem; }
+        .animal-bg span:nth-child(20) { top: 90%; left: 60%; animation-duration: 22s; animation-delay: 1.4s; font-size: 3.2rem; }
+        .animal-bg span:nth-child(21) { top: 12%; left: 55%; animation-duration: 21s; animation-delay: 0.7s; font-size: 2.6rem; }
+        .animal-bg span:nth-child(22) { top: 48%; left: 12%; animation-duration: 24s; animation-delay: 2.1s; font-size: 3.0rem; }
+        .animal-bg span:nth-child(23) { top: 78%; left: 45%; animation-duration: 18s; animation-delay: 1.6s; font-size: 2.8rem; }
+        .animal-bg span:nth-child(24) { top: 25%; left: 75%; animation-duration: 22s; animation-delay: 0.4s; font-size: 3.2rem; }
+        .animal-bg span:nth-child(25) { top: 62%; left: 65%; animation-duration: 20s; animation-delay: 2.9s; font-size: 2.6rem; }
+
+        @keyframes animalBgFloat {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(20px, -25px) rotate(10deg) scale(1.08); }
+            50% { transform: translate(-15px, 20px) rotate(-8deg) scale(0.95); }
+            75% { transform: translate(25px, 15px) rotate(8deg) scale(1.05); }
+            100% { transform: translate(-10px, -20px) rotate(-5deg) scale(1); }
+        }
+
+        /* ===== 额外漂浮装饰 (酷炫元素) ===== */
+        .floating-deco {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 2.2rem;
+            opacity: 0.18;
+            animation: floatAround 18s ease-in-out infinite alternate;
+        }
+        .floating-deco:nth-child(1) { top: 5%; left: 3%; animation-duration: 14s; font-size: 2.8rem; }
+        .floating-deco:nth-child(2) { top: 12%; right: 5%; animation-duration: 20s; animation-delay: 1s; font-size: 2.2rem; }
+        .floating-deco:nth-child(3) { bottom: 18%; left: 6%; animation-duration: 16s; animation-delay: 2s; font-size: 3.0rem; }
+        .floating-deco:nth-child(4) { bottom: 8%; right: 4%; animation-duration: 22s; animation-delay: 0.5s; font-size: 2.6rem; }
+        .floating-deco:nth-child(5) { top: 45%; left: 2%; animation-duration: 19s; animation-delay: 3s; font-size: 2.0rem; }
+        .floating-deco:nth-child(6) { top: 40%; right: 2%; animation-duration: 17s; animation-delay: 1.5s; font-size: 2.4rem; }
+        .floating-deco:nth-child(7) { top: 25%; left: 50%; animation-duration: 21s; animation-delay: 0.8s; font-size: 2.0rem; }
+        .floating-deco:nth-child(8) { bottom: 30%; right: 10%; animation-duration: 15s; animation-delay: 2.5s; font-size: 2.8rem; }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(15px, -20px) rotate(8deg) scale(1.1); }
+            50% { transform: translate(-10px, 15px) rotate(-5deg) scale(0.95); }
+            75% { transform: translate(20px, 10px) rotate(6deg) scale(1.05); }
+            100% { transform: translate(-5px, -15px) rotate(-3deg) scale(1); }
+        }
+
+        /* 顶部/底部滚动装饰 */
+        .top-scroll {
+            position: fixed;
+            top: 6px;
+            left: 0;
+            width: 100%;
+            font-size: 20px;
+            letter-spacing: 14px;
+            text-align: center;
+            opacity: 0.18;
+            pointer-events: none;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: scrollMarquee 22s linear infinite;
+            z-index: 1;
+            color: #88bbee;
+        }
+        .bottom-scroll {
+            position: fixed;
+            bottom: 6px;
+            left: 0;
+            width: 100%;
+            font-size: 18px;
+            letter-spacing: 12px;
+            text-align: center;
+            opacity: 0.12;
+            pointer-events: none;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: scrollMarquee 25s linear infinite reverse;
+            z-index: 1;
+            color: #6699cc;
+        }
+        @keyframes scrollMarquee {
+            0% { transform: translateX(-8%); }
+            100% { transform: translateX(8%); }
+        }
+
+        /* ===== 主卡片 ===== */
+        .card {
+            max-width: 860px;
+            width: 100%;
+            background: rgba(15, 14, 30, 0.75);
+            backdrop-filter: blur(20px);
+            border-radius: 90px 40px 90px 40px;
+            box-shadow: 0 25px 50px rgba(0, 100, 255, 0.12),
+                        0 10px 30px rgba(100, 200, 255, 0.08),
+                        inset 0 0 0 2px rgba(100, 200, 255, 0.10),
+                        0 0 60px rgba(50, 150, 255, 0.05);
+            padding: 38px 32px 42px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(100, 200, 255, 0.10);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "⚡ 🚀 🌟 💎 🎯 🔥 💫 ⭐ 🌙 ✨";
+            position: absolute;
+            top: -6px;
+            right: 8px;
+            font-size: 24px;
+            opacity: 0.12;
+            letter-spacing: 10px;
+            white-space: nowrap;
+            transform: rotate(4deg);
+            pointer-events: none;
+        }
+        .card::after {
+            content: "🦁 🐉 🦊 🐺 🦅 🐳 🦈 🌊 🏔️ ⚡";
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            font-size: 26px;
+            opacity: 0.10;
+            letter-spacing: 8px;
+            transform: rotate(-3deg);
+            pointer-events: none;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .title-group h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #64d8ff, #a78bfa, #f472b6, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(100, 200, 255, 0.20);
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .title-emoji {
+            font-size: 3.2rem;
+            line-height: 1;
+            filter: drop-shadow(0 6px 14px rgba(100, 200, 255, 0.30));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-12px) rotate(6deg) scale(1.05); }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); }
+        }
+
+        .mode-tabs {
+            display: flex;
+            gap: 12px;
+            background: rgba(100, 200, 255, 0.06);
+            padding: 6px 6px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(100, 200, 255, 0.10);
+            box-shadow: inset 0 1px 6px rgba(100, 200, 255, 0.03);
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            border: none;
+            background: transparent;
+            font-size: 1.15rem;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.25s ease;
+            color: #7799bb;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            white-space: nowrap;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.30), 0 4px 10px rgba(139, 92, 246, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            transform: scale(1.03);
+        }
+
+        .mode-btn:active { transform: scale(0.94); }
+
+        .countdown-box {
+            background: rgba(100, 200, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border-radius: 70px 30px 70px 30px;
+            padding: 32px 20px 30px;
+            margin: 20px 0 18px;
+            box-shadow: inset 0 4px 30px rgba(100, 200, 255, 0.03), 0 12px 40px rgba(50, 150, 255, 0.05);
+            border: 1px solid rgba(100, 200, 255, 0.06);
+            position: relative;
+            z-index: 3;
+        }
+
+        .big-emoji {
+            font-size: 4.6rem;
+            text-align: center;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 10px 18px rgba(100, 200, 255, 0.15));
+            animation: wiggle 2.2s infinite;
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(-3deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.06); }
+            100% { transform: rotate(-3deg) scale(1); }
+        }
+
+        .happiness-slogan {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #88bbdd;
+            background: rgba(100, 200, 255, 0.05);
+            padding: 6px 20px;
+            border-radius: 60px;
+            display: inline-block;
+            margin: 0 auto 14px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(100, 200, 255, 0.03);
+            border: 1px solid rgba(100, 200, 255, 0.06);
+            backdrop-filter: blur(2px);
+            width: auto;
+            max-width: 90%;
+        }
+        .happiness-slogan span {
+            display: inline-block;
+            animation: sparkle 1.8s ease-in-out infinite alternate;
+        }
+        @keyframes sparkle {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            font-weight: 700;
+            color: #aaccdd;
+        }
+
+        .time-unit {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            background: rgba(100, 200, 255, 0.04);
+            padding: 8px 20px 8px 18px;
+            border-radius: 80px;
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 1px 8px rgba(100, 200, 255, 0.03);
+            border: 1px solid rgba(100, 200, 255, 0.05);
+        }
+
+        .time-unit span:first-child {
+            font-size: 3.0rem;
+            min-width: 76px;
+            text-align: center;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #64d8ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(100, 200, 255, 0.10);
+        }
+
+        .time-unit .label {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #7799bb;
+            -webkit-text-fill-color: #7799bb;
+            background: none;
+            margin-left: 2px;
+        }
+
+        .separator {
+            font-size: 2.6rem;
+            font-weight: 300;
+            color: #335577;
+            margin: 0 4px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+            padding: 0 10px;
+            gap: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(100, 200, 255, 0.04);
+            backdrop-filter: blur(4px);
+            padding: 8px 28px 8px 22px;
+            border-radius: 50px;
+            border: 1px solid rgba(100, 200, 255, 0.05);
+            box-shadow: 0 4px 16px rgba(50, 150, 255, 0.03);
+        }
+
+        .status-badge span {
+            font-size: 2.0rem;
+        }
+
+        .status-badge .msg {
+            font-weight: 700;
+            color: #88aadd;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-emoji {
+            font-size: 2.4rem;
+            display: flex;
+            gap: 2px;
+            letter-spacing: 8px;
+        }
+
+        .footer-note {
+            margin-top: 22px;
+            text-align: center;
+            font-size: 1.0rem;
+            color: #557799;
+            font-weight: 600;
+            background: rgba(100, 200, 255, 0.03);
+            padding: 12px 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(100, 200, 255, 0.04);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 3;
+        }
+
+        .footer-note span {
+            font-size: 1.6rem;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 750px) {
+            .card { padding: 28px 18px 32px; border-radius: 60px 24px 60px 24px; }
+            .title-group h1 { font-size: 1.7rem; }
+            .title-emoji { font-size: 2.6rem; }
+            .mode-btn { font-size: 0.95rem; padding: 8px 16px; }
+            .time-unit span:first-child { font-size: 2.2rem; min-width: 50px; }
+            .time-unit { padding: 4px 12px; }
+            .separator { font-size: 1.8rem; }
+            .big-emoji { font-size: 3.6rem; }
+            .status-badge { padding: 6px 18px; }
+            .progress-emoji { font-size: 1.8rem; letter-spacing: 4px; }
+            .happiness-slogan { font-size: 1.1rem; padding: 4px 16px; }
+            .floating-deco { font-size: 1.6rem !important; }
+            .top-scroll, .bottom-scroll { font-size: 16px; letter-spacing: 8px; }
+            .animal-bg span { font-size: 2.4rem !important; }
+        }
+
+        @media (max-width: 480px) {
+            .mode-tabs { gap: 4px; justify-content: center; }
+            .mode-btn { font-size: 0.78rem; padding: 5px 10px; gap: 4px; }
+            .time-display { gap: 4px; }
+            .time-unit span:first-child { font-size: 1.6rem; min-width: 34px; }
+            .footer-note { font-size: 0.8rem; }
+            .title-group h1 { font-size: 1.3rem; }
+            .card { padding: 18px 10px 22px; }
+            .happiness-slogan { font-size: 0.95rem; }
+            .status-badge .msg { font-size: 0.9rem; }
+            .status-badge span { font-size: 1.4rem; }
+            .animal-bg span { font-size: 1.8rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 酷炫背景层 ===== -->
+    <div class="bg-layer"></div>
+
+    <!-- ===== 星星 ===== -->
+    <div class="stars" id="stars"></div>
+
+    <!-- ===== 飘散小动物 (酷炫版) ===== -->
+    <div class="animal-container" id="animalContainer"></div>
+
+    <!-- ===== 满屏动物背景 ===== -->
+    <div class="animal-bg">
+        <span>🦁</span><span>🐉</span><span>🦊</span><span>🐺</span><span>🦅</span>
+        <span>🐳</span><span>🦈</span><span>🐋</span><span>🦭</span><span>🐧</span>
+        <span>🦄</span><span>🐱</span><span>🐰</span><span>🐼</span><span>🐨</span>
+        <span>🦊</span><span>🐻</span><span>🐝</span><span>🦋</span><span>🐞</span>
+        <span>🐶</span><span>🐺</span><span>🦁</span><span>🐯</span><span>🐮</span>
+    </div>
+
+    <!-- ===== 额外漂浮装饰 ===== -->
+    <div class="floating-deco">⚡</div>
+    <div class="floating-deco">🚀</div>
+    <div class="floating-deco">🌟</div>
+    <div class="floating-deco">💎</div>
+    <div class="floating-deco">🎯</div>
+    <div class="floating-deco">🔥</div>
+    <div class="floating-deco">💫</div>
+    <div class="floating-deco">⭐</div>
+
+    <!-- 顶部/底部滚动装饰 -->
+    <div class="top-scroll">⚡ 🚀 🌟 💎 🎯 🔥 💫 ⭐ 🌙 ✨ ⚡ 🚀</div>
+    <div class="bottom-scroll">🦁 🐉 🦊 🐺 🦅 🐳 🦈 🌊 🏔️ ⚡ 🦁 🐉</div>
+
+    <!-- ===== 主卡片 ===== -->
+    <div class="card">
+        <div class="header">
+            <div class="title-group">
+                <span class="title-emoji">👑</span>
+                <h1>让我们都变成幸福大王</h1>
+                <span style="font-size: 2.0rem; margin-left: -6px;">⚡</span>
+            </div>
+            <div class="mode-tabs">
+                <button class="mode-btn active" id="modeWork" data-mode="work">💼 下班</button>
+                <button class="mode-btn" id="modeHoliday" data-mode="holiday">🎉 假期</button>
+            </div>
+        </div>
+
+        <div class="countdown-box">
+            <div class="happiness-slogan" id="sloganText">
+                <span>⚡ 今天也要火力全开 ⚡</span>
+            </div>
+
+            <div class="big-emoji" id="mainEmoji">🕕✨</div>
+            <div class="time-display" id="timeDisplay">
+                <div class="time-unit"><span id="days">00</span><span class="label">天</span></div>
+                <span class="separator">·</span>
+                <div class="time-unit"><span id="hours">00</span><span class="label">时</span></div>
+                <span class="separator">·</span>
+                <div class="time-unit"><span id="minutes">00</span><span class="label">分</span></div>
+                <span class="separator">·</span>
+                <div class="time-unit"><span id="seconds">00</span><span class="label">秒</span></div>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="status-badge">
+                <span id="statusEmoji">😎</span>
+                <span class="msg" id="statusMsg">今日份快乐</span>
+            </div>
+            <div class="progress-emoji" id="progressEmojis">
+                🌟🌟🌟
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <span>⚡</span> 多巴胺分泌中 · 每天靠近幸福一点点 <span>💫</span>
+            <span style="font-size: 1.4rem;">✨</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ===== 生成星星 =====
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 120; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = 1 + Math.random() * 3;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
+                star.style.animationDelay = (Math.random() * 5) + 's';
+                starsContainer.appendChild(star);
+            }
+
+            // ===== 生成飘散小动物 =====
+            const animalContainer = document.getElementById('animalContainer');
+            const animalEmojis = ['🦁', '🐉', '🦊', '🐺', '🦅', '🐳', '🦈', '🐋', '🦭', '🐧', '🦄', '🐱', '🐰', '🐼', '🐨', '🐻', '🐝', '🦋', '🐞', '🐶'];
+            for (let i = 0; i < 25; i++) {
+                const el = document.createElement('span');
+                el.className = 'animal-float';
+                el.textContent = animalEmojis[i % animalEmojis.length];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = Math.random() * 100 + '%';
+                el.style.fontSize = (1.5 + Math.random() * 2.5) + 'rem';
+                el.style.animationDuration = (12 + Math.random() * 14) + 's';
+                el.style.animationDelay = (Math.random() * 10) + 's';
+                el.style.opacity = 0.12 + Math.random() * 0.18;
+                animalContainer.appendChild(el);
+            }
+
+            // ===== 所有法定节假日 (2026-2028) =====
+            const holidayList = [
+                { name: '🎆 元旦', date: new Date(2026, 0, 1) },
+                { name: '🧧 春节', date: new Date(2026, 1, 17) },
+                { name: '🌿 清明节', date: new Date(2026, 3, 5) },
+                { name: '💪 劳动节', date: new Date(2026, 4, 1) },
+                { name: '🎋 端午节', date: new Date(2026, 5, 19) },
+                { name: '🌕 中秋节', date: new Date(2026, 8, 27) },
+                { name: '🇨🇳 国庆节', date: new Date(2026, 9, 1) },
+                { name: '🎆 元旦', date: new Date(2027, 0, 1) },
+                { name: '🧧 春节', date: new Date(2027, 1, 6) },
+                { name: '🌿 清明节', date: new Date(2027, 3, 5) },
+                { name: '💪 劳动节', date: new Date(2027, 4, 1) },
+                { name: '🎋 端午节', date: new Date(2027, 5, 9) },
+                { name: '🌕 中秋节', date: new Date(2027, 8, 15) },
+                { name: '🇨🇳 国庆节', date: new Date(2027, 9, 1) },
+                { name: '🎆 元旦', date: new Date(2028, 0, 1) },
+                { name: '🧧 春节', date: new Date(2028, 1, 26) },
+                { name: '🌿 清明节', date: new Date(2028, 3, 4) },
+                { name: '💪 劳动节', date: new Date(2028, 4, 1) },
+            ];
+
+            function getNextHoliday() {
+                const now = new Date();
+                const future = holidayList
+                    .filter(item => item.date.getTime() > now.getTime())
+                    .sort((a, b) => a.date.getTime() - b.date.getTime());
+                if (future.length > 0) return future[0];
+                return { name: '🎉 明年假期', date: new Date(2028, 9, 1) };
+            }
+
+            let currentHoliday = getNextHoliday();
+
+            // DOM
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const mainEmoji = document.getElementById('mainEmoji');
+            const statusEmoji = document.getElementById('statusEmoji');
+            const statusMsg = document.getElementById('statusMsg');
+            const progressEmojis = document.getElementById('progressEmojis');
+            const sloganText = document.getElementById('sloganText');
+
+            const modeWorkBtn = document.getElementById('modeWork');
+            const modeHolidayBtn = document.getElementById('modeHoliday');
+            
+            let currentMode = 'work';
+
+            // 下班目标: 每天 18:00:00 (六点)
+            function getWorkTarget() {
+                const now = new Date();
+                const target = new Date(now);
+                target.setHours(18, 0, 0, 0);
+                if (now.getTime() >= target.getTime()) {
+                    target.setDate(target.getDate() + 1);
+                }
+                return target;
+            }
+
+            // ===== 酷炫幸福语句池 =====
+            const sloganPool = [
+                '⚡ 今天也要火力全开 ⚡',
+                '🚀 幸福正在加速赶来 🚀',
+                '🌟 做自己的超级英雄 🌟',
+                '💎 每一天都是宝藏 💎',
+                '🎯 瞄准幸福，发射 🎯',
+                '🔥 燃烧吧，小宇宙 🔥',
+                '💫 向着星辰大海 💫',
+                '⭐ 你值得所有的闪耀 ⭐',
+                '🌙 月亮不睡我不睡 🌙',
+                '🌈 风雨过后是彩虹 🌈',
+                '🦁 王者风范，今天也是 🦁',
+                '⚡ 电量满格，出发 ⚡',
+                '🐉 龙行天下，幸福无敌 🐉',
+                '🦊 机智如我，快乐加倍 🦊',
+            ];
+
+            // ===== 可可爱爱语录 (男士酷炫版) =====
+            const cutePhrases = {
+                work: {
+                    default: '今天也是超能打工人 ⚡',
+                    nearEnd: '六点倒计时！冲鸭 🚀',
+                    veryNear: '再等一小下，胜利在望 🎯',
+                    done: '下班！去做自己的王 👑'
+                },
+                holiday: {
+                    default: '假期倒计时，蓄力中 💪',
+                    near: '假期就在眼前！准备起飞 🚀',
+                    veryNear: '马上放假！快乐要爆了 🔥',
+                    done: '假期开启！尽情闪耀吧 ⭐'
+                }
+            };
+
+            function getCutePhrase(mode, diff, days, hours) {
+                if (mode === 'work') {
+                    if (diff === 0) return cutePhrases.work.done;
+                    if (hours < 1 && days === 0) return cutePhrases.work.veryNear;
+                    if (days === 0 && hours < 3) return cutePhrases.work.nearEnd;
+                    return cutePhrases.work.default;
+                } else {
+                    if (diff === 0) return cutePhrases.holiday.done;
+                    if (days <= 3) return cutePhrases.holiday.veryNear;
+                    if (days <= 10) return cutePhrases.holiday.near;
+                    return cutePhrases.holiday.default;
+                }
+            }
+
+            function updateSlogan() {
+                const randomIdx = Math.floor(Math.random() * sloganPool.length);
+                sloganText.innerHTML = `<span>✨ ${sloganPool[randomIdx]} ✨</span>`;
+            }
+
+            // ===== 倒计时更新 =====
+            function updateCountdown() {
+                const now = new Date();
+                let target;
+
+                if (currentMode === 'work') {
+                    target = getWorkTarget();
+                } else {
+                    if (now.getTime() >= currentHoliday.date.getTime()) {
+                        currentHoliday = getNextHoliday();
+                    }
+                    target = currentHoliday.date;
+                }
+
+                let diff = target.getTime() - now.getTime();
+                if (diff < 0) diff = 0;
+
+                const secondsTotal = Math.floor(diff / 1000);
+                const days = Math.floor(secondsTotal / 86400);
+                const hours = Math.floor((secondsTotal % 86400) / 3600);
+                const minutes = Math.floor((secondsTotal % 3600) / 60);
+                const seconds = secondsTotal % 60;
+
+                daysEl.textContent = String(days).padStart(2, '0');
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+
+                if (currentMode === 'work') {
+                    mainEmoji.textContent = diff === 0 ? '🎉🥳 下班啦!' : '🕕✨';
+                } else {
+                    mainEmoji.textContent = diff === 0 ? '🏖️🎉 假期开始!' : '🌈🎈';
+                }
+
+                const phrase = getCutePhrase(currentMode, diff, days, hours);
+                if (currentMode === 'work') {
+                    if (diff === 0) statusEmoji.textContent = '🥳';
+                    else if (hours < 1 && days === 0) statusEmoji.textContent = '⏳';
+                    else if (days === 0 && hours < 3) statusEmoji.textContent = '🔥';
+                    else statusEmoji.textContent = '😎';
+                } else {
+                    if (diff === 0) statusEmoji.textContent = '🎊';
+                    else if (days <= 3) statusEmoji.textContent = '🤩';
+                    else if (days <= 10) statusEmoji.textContent = '🌟';
+                    else statusEmoji.textContent = '🚀';
+                }
+                statusMsg.textContent = phrase;
+
+                let progressStr = '';
+                if (currentMode === 'work') {
+                    const totalWorkSeconds = 9 * 3600;
+                    const elapsed = (now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()) - 9 * 3600;
+                    const p = Math.min(1, Math.max(0, elapsed / totalWorkSeconds));
+                    const starCount = Math.floor(p * 5);
+                    progressStr = '⭐'.repeat(starCount) + '☆'.repeat(5 - starCount);
+                    if (diff === 0) progressStr = '🌈🎉🎉';
+                } else {
+                    const totalDays = 30;
+                    const remainDays = Math.floor(diff / 86400000);
+                    const starCount = Math.max(0, Math.min(5, Math.floor((1 - remainDays / totalDays) * 5)));
+                    progressStr = '🌟'.repeat(starCount) + '✨'.repeat(5 - starCount);
+                    if (diff === 0) progressStr = '🎉🎉🎉';
+                }
+                progressEmojis.textContent = progressStr || '🌟🌟🌟';
+            }
+
+            function setMode(mode) {
+                currentMode = mode;
+                if (mode === 'work') {
+                    modeWorkBtn.classList.add('active');
+                    modeHolidayBtn.classList.remove('active');
+                } else {
+                    modeHolidayBtn.classList.add('active');
+                    modeWorkBtn.classList.remove('active');
+                    currentHoliday = getNextHoliday();
+                }
+                updateCountdown();
+                updateSlogan();
+            }
+
+            modeWorkBtn.addEventListener('click', () => setMode('work'));
+            modeHolidayBtn.addEventListener('click', () => setMode('holiday'));
+
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+
+            setInterval(() => {
+                updateSlogan();
+                if (currentMode === 'holiday') {
+                    const now = new Date();
+                    if (now.getTime() >= currentHoliday.date.getTime()) {
+                        currentHoliday = getNextHoliday();
+                        updateCountdown();
+                    }
+                }
+            }, 8000);
+
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    if (currentMode === 'holiday') {
+                        currentHoliday = getNextHoliday();
+                    }
+                    updateCountdown();
+                    updateSlogan();
+                }
+            });
+
+            console.log('👑 让我们都变成幸福大王！ (酷炫男士·动物版)');
+        })();
+    </script>
+</body>
+</html>
